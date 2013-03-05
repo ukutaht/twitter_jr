@@ -4,15 +4,19 @@ describe "Static pages" do
 
   describe "Home page" do
 
-    it "should have the content 'Twitter Jr'" do
+    it "should have the h1 'Twitter Junior'" do
       visit '/static_pages/home'
-      page.should have_content('Twitter Jr')
+      page.should have_selector('h1', :text => 'Twitter Junior')
     end
-    it "should have the right title" do
+    it "should have the base title" do
   		visit '/static_pages/home'
   		page.should have_selector('title',
-                    :text => "Twitter Junior | Home")
-	end
+                    :text => "Twitter Junior")
+    end
+    it "should not have a custom pqge title" do
+      visit '/static_pages/home'
+      page.should_not have_selector('title', :text => '| Home')
+    end
   end
 
 
